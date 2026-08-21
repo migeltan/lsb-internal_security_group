@@ -1,5 +1,6 @@
 <?php
-require_once __DIR__ . '/config/database.php';
+require_once __DIR__ . '/config/connection_paths.php';
+require_once CONFIG_PATH . '/database.php';
 
 $pageTitle = 'Application Submitted';
 $pdo = getDbConnection();
@@ -9,7 +10,7 @@ $isAccessPass = str_starts_with($ref, 'AP-');
 $isVehicle = str_starts_with($ref, 'VS-');
 
 if (!$ref || (!$isAccessPass && !$isVehicle)) {
-    header('Location: index.php');
+    header('Location: ' . BASE_URL . '/index.php');
     exit;
 }
 
@@ -34,7 +35,7 @@ $stmt->execute([$ref]);
 $application = $stmt->fetch();
 
 if (!$application) {
-    header('Location: index.php');
+    header('Location: ' . BASE_URL . '/index.php');
     exit;
 }
 
@@ -43,7 +44,7 @@ $docStmt = $pdo->prepare('SELECT document_type, file_name FROM documents WHERE a
 $docStmt->execute([$ref]);
 $documents = $docStmt->fetchAll();
 
-require_once __DIR__ . '/includes/header.php';
+require_once INCLUDES_PATH . '/header.php';
 ?>
 
 <div class="form-section-card" style="max-width:640px; margin:0 auto;">
@@ -91,9 +92,9 @@ require_once __DIR__ . '/includes/header.php';
     </p>
 
     <div class="d-flex gap-2 mt-3">
-        <a href="application-status.php?ref=<?= urlencode($ref) ?>" class="btn btn-govt-primary btn-sm">Check Status</a>
-        <a href="index.php" class="btn btn-govt-outline btn-sm">Back to Home</a>
+        <a href="<?= FEAT3_URL ?>/application-status.php?ref=<?= urlencode($ref) ?>" class="btn btn-govt-primary btn-sm">Check Status</a>
+        <a href="<?= BASE_URL ?>/index.php" class="btn btn-govt-outline btn-sm">Back to Home</a>
     </div>
 </div>
 
-<?php require_once __DIR__ . '/includes/footer.php'; ?>
+<?php require_once INCLUDES_PATH . '/footer.php'; ?>

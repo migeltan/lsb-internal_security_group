@@ -1,196 +1,216 @@
-@import url('https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&display=swap");
 
 :root {
-    --navy-deep: #0B2545;
-    --navy: #13315C;
-    --navy-light: #1F4E8C;
-    --seal-gold: #A6802A;
-    --paper: #F7F7F5;
-    --ink: #1C1F26;
-    --ink-muted: #5B6270;
-    --hairline: #D9DCE1;
-    --status-pending: #8A6D1D;
-    --status-review: #1F4E8C;
-    --status-returned: #A13D2E;
-    --status-approved: #276749;
+  --navy-deep: #0b2545;
+  --navy: #13315c;
+  --navy-light: #1f4e8c;
+  --seal-gold: #a6802a;
+  --paper: #f7f7f5;
+  --ink: #1c1f26;
+  --ink-muted: #5b6270;
+  --hairline: #d9dce1;
+  --status-pending: #8a6d1d;
+  --status-review: #1f4e8c;
+  --status-returned: #a13d2e;
+  --status-approved: #276749;
 }
 
 body {
-    background-color: var(--paper);
-    color: var(--ink);
-    font-family: 'Public Sans', -apple-system, sans-serif;
+  background-color: var(--paper);
+  color: var(--ink);
+  font-family:
+    "Public Sans",
+    -apple-system,
+    sans-serif;
 }
 
-h1, h2, h3, .display-heading {
-    font-family: 'Source Serif 4', Georgia, serif;
-    font-weight: 700;
-    color: var(--navy-deep);
-    letter-spacing: -0.01em;
+h1,
+h2,
+h3,
+.display-heading {
+  font-family: "Source Serif 4", Georgia, serif;
+  font-weight: 700;
+  color: var(--navy-deep);
+  letter-spacing: -0.01em;
 }
 
 /* --- Navbar --- */
 .navbar-govt {
-    background-color: var(--navy-deep);
-    border-bottom: 3px solid var(--seal-gold);
+  background-color: var(--navy-deep);
+  border-bottom: 3px solid var(--seal-gold);
 }
 .navbar-govt .navbar-brand {
-    font-family: 'Source Serif 4', serif;
-    font-weight: 600;
-    font-size: 1.05rem;
+  font-family: "Source Serif 4", serif;
+  font-weight: 600;
+  font-size: 1.05rem;
 }
 .navbar-govt .nav-link {
-    color: #D9E2F1;
-    font-size: 0.92rem;
+  color: #d9e2f1;
+  font-size: 0.92rem;
 }
 .navbar-govt .nav-link:hover {
-    color: #ffffff;
+  color: #ffffff;
 }
 
 /* --- Hero / landing --- */
 .hero-govt {
-    background: linear-gradient(180deg, var(--navy-deep) 0%, var(--navy) 100%);
-    color: #fff;
-    border-radius: 6px;
-    padding: 3rem 2.5rem;
-    margin-bottom: 2.5rem;
-    position: relative;
-    overflow: hidden;
+  background: linear-gradient(180deg, var(--navy-deep) 0%, var(--navy) 100%);
+  color: #fff;
+  border-radius: 6px;
+  padding: 3rem 2.5rem;
+  margin-bottom: 2.5rem;
+  position: relative;
+  overflow: hidden;
 }
 .hero-govt::after {
-    content: "";
-    position: absolute;
-    right: -60px;
-    top: -60px;
-    width: 220px;
-    height: 220px;
-    border: 2px solid rgba(166, 128, 42, 0.35);
-    border-radius: 50%;
+  content: "";
+  position: absolute;
+  right: -60px;
+  top: -60px;
+  width: 220px;
+  height: 220px;
+  border: 2px solid rgba(166, 128, 42, 0.35);
+  border-radius: 50%;
 }
 .hero-govt .eyebrow {
-    text-transform: uppercase;
-    letter-spacing: 0.14em;
-    font-size: 0.75rem;
-    color: var(--seal-gold);
-    font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 0.75rem;
+  color: var(--seal-gold);
+  font-weight: 600;
 }
 .hero-govt h1 {
-    color: #fff;
-    font-size: 2.1rem;
-    margin: 0.4rem 0 0.6rem;
+  color: #fff;
+  font-size: 2.1rem;
+  margin: 0.4rem 0 0.6rem;
 }
 .hero-govt p.lead {
-    color: #C9D4E6;
-    max-width: 620px;
+  color: #c9d4e6;
+  max-width: 620px;
 }
 
 /* --- Application choice cards --- */
 .app-choice-card {
-    border: 1px solid var(--hairline);
-    border-radius: 8px;
-    padding: 1.75rem;
-    height: 100%;
-    background: #fff;
-    transition: border-color 0.15s ease, transform 0.15s ease;
+  border: 1px solid var(--hairline);
+  border-radius: 8px;
+  padding: 1.75rem;
+  height: 100%;
+  background: #fff;
+  transition:
+    border-color 0.15s ease,
+    transform 0.15s ease;
 }
 .app-choice-card:hover {
-    border-color: var(--navy-light);
-    transform: translateY(-2px);
+  border-color: var(--navy-light);
+  transform: translateY(-2px);
 }
 .app-choice-card .card-index {
-    font-family: 'Source Serif 4', serif;
-    font-size: 0.85rem;
-    color: var(--seal-gold);
-    font-weight: 600;
-    letter-spacing: 0.08em;
+  font-family: "Source Serif 4", serif;
+  font-size: 0.85rem;
+  color: var(--seal-gold);
+  font-weight: 600;
+  letter-spacing: 0.08em;
 }
 .app-choice-card h3 {
-    font-size: 1.3rem;
-    margin: 0.35rem 0 0.6rem;
+  font-size: 1.3rem;
+  margin: 0.35rem 0 0.6rem;
 }
 .app-choice-card p {
-    color: var(--ink-muted);
-    font-size: 0.94rem;
+  color: var(--ink-muted);
+  font-size: 0.94rem;
 }
 
 /* --- Section cards used throughout forms --- */
 .form-section-card {
-    background: #fff;
-    border: 1px solid var(--hairline);
-    border-radius: 8px;
-    padding: 1.75rem;
-    margin-bottom: 1.5rem;
+  background: #fff;
+  border: 1px solid var(--hairline);
+  border-radius: 8px;
+  padding: 1.75rem;
+  margin-bottom: 1.5rem;
 }
 .form-section-card .section-label {
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    font-size: 0.72rem;
-    color: var(--seal-gold);
-    font-weight: 700;
-    margin-bottom: 0.25rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.72rem;
+  color: var(--seal-gold);
+  font-weight: 700;
+  margin-bottom: 0.25rem;
 }
 .form-section-card h2 {
-    font-size: 1.25rem;
-    margin-bottom: 1.1rem;
+  font-size: 1.25rem;
+  margin-bottom: 1.1rem;
 }
 
 /* --- Buttons --- */
 .btn-govt-primary {
-    background-color: var(--navy-deep);
-    border-color: var(--navy-deep);
-    color: #fff;
+  background-color: var(--navy-deep);
+  border-color: var(--navy-deep);
+  color: #fff;
 }
 .btn-govt-primary:hover {
-    background-color: var(--navy);
-    border-color: var(--navy);
-    color: #fff;
+  background-color: var(--navy);
+  border-color: var(--navy);
+  color: #fff;
 }
 .btn-govt-outline {
-    border-color: var(--navy-deep);
-    color: var(--navy-deep);
-    background: transparent;
+  border-color: var(--navy-deep);
+  color: var(--navy-deep);
+  background: transparent;
 }
 .btn-govt-outline:hover {
-    background-color: var(--navy-deep);
-    color: #fff;
+  background-color: var(--navy-deep);
+  color: #fff;
 }
 
 /* --- Status badges --- */
 .badge-status {
-    font-weight: 600;
-    padding: 0.4em 0.75em;
-    border-radius: 20px;
-    font-size: 0.78rem;
+  font-weight: 600;
+  padding: 0.4em 0.75em;
+  border-radius: 20px;
+  font-size: 0.78rem;
 }
-.badge-pending   { background: #FBF0DA; color: var(--status-pending); }
-.badge-review    { background: #DCE7F8; color: var(--status-review); }
-.badge-returned  { background: #F7DFDA; color: var(--status-returned); }
-.badge-approved  { background: #DBEBE2; color: var(--status-approved); }
+.badge-pending {
+  background: #fbf0da;
+  color: var(--status-pending);
+}
+.badge-review {
+  background: #dce7f8;
+  color: var(--status-review);
+}
+.badge-returned {
+  background: #f7dfda;
+  color: var(--status-returned);
+}
+.badge-approved {
+  background: #dbebe2;
+  color: var(--status-approved);
+}
 
 /* --- Repeater blocks (family / education entries) --- */
 .repeater-entry {
-    border: 1px solid var(--hairline);
-    border-radius: 6px;
-    padding: 1.1rem;
-    margin-bottom: 0.9rem;
-    position: relative;
-    background: #FBFBFA;
+  border: 1px solid var(--hairline);
+  border-radius: 6px;
+  padding: 1.1rem;
+  margin-bottom: 0.9rem;
+  position: relative;
+  background: #fbfbfa;
 }
 .repeater-entry .remove-entry {
-    position: absolute;
-    top: 0.6rem;
-    right: 0.6rem;
+  position: absolute;
+  top: 0.6rem;
+  right: 0.6rem;
 }
 
 /* --- Footer --- */
 .footer-govt {
-    border-top: 1px solid var(--hairline);
-    background: #fff;
+  border-top: 1px solid var(--hairline);
+  background: #fff;
 }
 
 /* --- Conditional document blocks --- */
 .doc-conditional {
-    display: none;
+  display: none;
 }
 .doc-conditional.active {
-    display: block;
+  display: block;
 }

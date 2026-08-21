@@ -1,0 +1,755 @@
+/* ==========================================================================
+   theme-smart.css
+   House of Representatives — Internal Security Group
+   Digital Access Pass and Vehicle Sticker Application Portal
+
+   Palette sampled from the SMART program mark:
+     --smart-blue    #225AA7  (primary / structure)
+     --smart-red     #EF3B4C  (accent / call-to-action)
+     --smart-yellow  #F9CB14  (highlight / secondary accent)
+
+   Corner-shape motif: the SMART mark uses stacked angular blocks
+   (blue / yellow / red) cut at a diagonal in the top-left corner.
+   That motif is reused here at three scales:
+     1. .page-corner-accent  — full page, top-left, decorative only
+     2. .hero-corner-shape   — inside the hero banner, top-right
+     3. .corner-accent-*     — small ribbon-corner on individual cards
+
+   Real logo assets (public/img/smart-logo1.svg, smart-logo2.svg) are
+   used in the navbar, hero badge, and footer — see the .navbar-brand-logo,
+   .hero-logo-badge / .hero-logo-img, and .footer-logo-img rules below.
+   ========================================================================== */
+
+:root {
+  --smart-blue: #225aa7;
+  --smart-blue-dark: #16407f;
+  --smart-blue-light: #e8eff9;
+
+  --smart-red: #ef3b4c;
+  --smart-red-dark: #c82a3a;
+  --smart-red-light: #fdebed;
+
+  --smart-yellow: #f9cb14;
+  --smart-yellow-dark: #d9ae00;
+
+  --smart-ink: #1c2b3a;
+  --smart-muted: #5b6b7c;
+  --smart-border: #dde3ea;
+  --smart-surface: #ffffff;
+  --smart-bg: #f5f7fa;
+
+  --smart-radius: 10px;
+  --smart-shadow: 0 2px 10px rgba(22, 64, 127, 0.08);
+  --smart-shadow-hover: 0 8px 20px rgba(22, 64, 127, 0.14);
+}
+
+body {
+  background-color: var(--smart-bg);
+  color: var(--smart-ink);
+  position: relative;
+}
+
+/* --------------------------------------------------------------------
+   Skip link (accessibility) — visually hidden until focused
+   -------------------------------------------------------------------- */
+.skip-link {
+  position: absolute;
+  top: -48px;
+  left: 0.5rem;
+  z-index: 100;
+  background: var(--smart-blue-dark);
+  color: #fff;
+  padding: 0.6rem 1rem;
+  border-radius: 0 0 6px 6px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: top 0.15s ease;
+}
+
+.skip-link:focus {
+  top: 0;
+  color: #fff;
+}
+
+/* --------------------------------------------------------------------
+   Page-level corner accent (top-left), stacked angular blocks
+   matching the blue / yellow / red mark in the reference logo
+   -------------------------------------------------------------------- */
+.page-corner-accent {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 260px;
+  height: 220px;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.page-corner-accent .corner-block {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+}
+
+.page-corner-accent .corner-blue {
+  width: 130px;
+  height: 130px;
+  background: var(--smart-blue);
+  clip-path: polygon(0 0, 100% 0, 70% 100%, 0 100%);
+}
+
+.page-corner-accent .corner-yellow {
+  width: 210px;
+  height: 62px;
+  background: var(--smart-yellow);
+  clip-path: polygon(0 0, 100% 0, 78% 100%, 0 100%);
+}
+
+.page-corner-accent .corner-red {
+  width: 260px;
+  height: 40px;
+  background: var(--smart-red);
+  clip-path: polygon(0 0, 100% 0, 88% 100%, 0 100%);
+}
+
+.page-corner-accent .corner-triangle {
+  position: absolute;
+  top: 130px;
+  left: 0;
+  width: 130px;
+  height: 130px;
+  background: var(--smart-red);
+  clip-path: polygon(0 0, 100% 0, 0 100%);
+  opacity: 0.9;
+}
+
+/* Keep page content above the fixed corner accent */
+.container,
+.container-fluid,
+main,
+.hero-govt,
+.app-choice-card,
+.form-section-card {
+  position: relative;
+  z-index: 1;
+}
+
+/* --------------------------------------------------------------------
+   Hero banner
+   -------------------------------------------------------------------- */
+.hero-govt {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(
+    135deg,
+    var(--smart-blue-dark) 0%,
+    var(--smart-blue) 60%
+  );
+  color: #fff;
+  border-radius: var(--smart-radius);
+  padding: 2.75rem 2.5rem;
+  margin-bottom: 2.5rem;
+  box-shadow: var(--smart-shadow);
+}
+
+/* Angular yellow / red accent block echoing the SMART corner mark */
+.hero-govt::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 260px;
+  height: 100%;
+  background: var(--smart-yellow);
+  clip-path: polygon(45% 0, 100% 0, 100% 100%, 75% 100%);
+  opacity: 0.95;
+}
+
+.hero-govt::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 160px;
+  height: 100%;
+  background: var(--smart-red);
+  clip-path: polygon(60% 0, 100% 0, 100% 100%, 90% 100%);
+}
+
+/* Extra small triangle notch, top-right, for depth (matches logo's layered look) */
+.hero-corner-shape {
+  position: absolute;
+  top: 0;
+  right: 40px;
+  width: 70px;
+  height: 70px;
+  background: var(--smart-blue-dark);
+  clip-path: polygon(100% 0, 100% 100%, 0 0);
+  opacity: 0.35;
+  z-index: 1;
+}
+
+.hero-govt .eyebrow {
+  position: relative;
+  z-index: 2;
+  display: inline-block;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--smart-yellow);
+  margin-bottom: 0.75rem;
+}
+
+.hero-govt h1 {
+  position: relative;
+  z-index: 2;
+  font-size: 1.9rem;
+  font-weight: 800;
+  line-height: 1.25;
+  max-width: 40rem;
+  margin-bottom: 0.9rem;
+}
+
+.hero-govt .lead {
+  position: relative;
+  z-index: 2;
+  max-width: 34rem;
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.88);
+  margin-bottom: 0;
+}
+
+/* --------------------------------------------------------------------
+   Hero logo badge (wraps eyebrow/h1/lead alongside the SMART icon)
+   -------------------------------------------------------------------- */
+.hero-govt-inner {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: flex-start;
+  gap: 1.25rem;
+}
+
+.hero-logo-badge {
+  flex: 0 0 auto;
+  width: clamp(48px, 10vw, 64px);
+  height: clamp(48px, 10vw, 64px);
+  background: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--smart-shadow);
+}
+
+.hero-logo-img {
+  width: 65%;
+  height: 65%;
+  object-fit: contain;
+}
+
+.hero-govt-text {
+  min-width: 0;
+}
+
+@media (max-width: 575.98px) {
+  .hero-govt-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.9rem;
+  }
+}
+
+/* --------------------------------------------------------------------
+   Application choice cards (Access Pass / Vehicle Sticker)
+   -------------------------------------------------------------------- */
+.app-choice-card {
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+  background: var(--smart-surface);
+  border: 1px solid var(--smart-border);
+  border-top: 4px solid var(--smart-blue);
+  border-radius: var(--smart-radius);
+  padding: 1.75rem 1.75rem 1.5rem;
+  box-shadow: var(--smart-shadow);
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease,
+    border-color 0.15s ease;
+}
+
+.app-choice-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--smart-shadow-hover);
+}
+
+.app-choice-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.app-choice-card .card-index {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--smart-blue);
+  background: var(--smart-blue-light);
+  border-radius: 999px;
+  padding: 0.25rem 0.65rem;
+  margin-bottom: 0.9rem;
+}
+
+.app-choice-card h3 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--smart-ink);
+  margin-bottom: 0.5rem;
+}
+
+.app-choice-card p {
+  color: var(--smart-muted);
+  font-size: 0.92rem;
+  margin-bottom: 1.25rem;
+}
+
+/* --------------------------------------------------------------------
+   Secondary info cards (status / instructions / requirements / contact)
+   -------------------------------------------------------------------- */
+.form-section-card {
+  position: relative;
+  overflow: hidden;
+  background: var(--smart-surface);
+  border: 1px solid var(--smart-border);
+  border-radius: var(--smart-radius);
+  padding: 1.5rem;
+  box-shadow: var(--smart-shadow);
+}
+
+.form-section-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.form-section-card .section-label {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--smart-red-dark);
+  background: var(--smart-red-light);
+  border-radius: 999px;
+  padding: 0.2rem 0.6rem;
+  margin-bottom: 0.6rem;
+}
+
+.form-section-card h2 {
+  color: var(--smart-ink);
+  font-weight: 700;
+  margin-bottom: 0.6rem;
+}
+
+.form-section-card ul {
+  list-style: none;
+  padding-left: 0 !important;
+  margin-bottom: 0;
+}
+
+.form-section-card ul li {
+  position: relative;
+  padding-left: 1.1rem;
+  margin-bottom: 0.4rem;
+  line-height: 1.4;
+}
+
+.form-section-card ul li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.5em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--smart-yellow-dark);
+}
+
+/* --------------------------------------------------------------------
+   Small ribbon-style corner accent for individual cards.
+   A folded-flag triangle in the top-right corner, in one of the
+   three SMART palette colors — apply with corner-accent-blue /
+   -red / -yellow on .app-choice-card or .form-section-card.
+   -------------------------------------------------------------------- */
+.corner-accent-blue::after,
+.corner-accent-red::after,
+.corner-accent-yellow::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 46px;
+  height: 46px;
+  clip-path: polygon(100% 0, 0 0, 100% 100%);
+  z-index: 0;
+}
+
+.corner-accent-blue::after {
+  background: var(--smart-blue);
+}
+
+.corner-accent-red::after {
+  background: var(--smart-red);
+}
+
+.corner-accent-yellow::after {
+  background: var(--smart-yellow);
+}
+
+/* --------------------------------------------------------------------
+   Navbar
+   -------------------------------------------------------------------- */
+.navbar-govt {
+  background: linear-gradient(
+    90deg,
+    var(--smart-blue-dark) 0%,
+    var(--smart-blue) 100%
+  );
+  box-shadow: 0 2px 8px rgba(22, 64, 127, 0.18);
+  padding-top: 0.65rem;
+  padding-bottom: 0.65rem;
+  z-index: 20;
+}
+
+.navbar-govt.sticky-top {
+  top: 0;
+}
+
+.navbar-govt .container {
+  flex-wrap: nowrap;
+  gap: 0.5rem;
+}
+
+.navbar-govt .navbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-weight: 700;
+  font-size: 1rem;
+  color: #fff;
+  min-width: 0;
+  /* allow the brand block to shrink instead of pushing the toggler off-screen */
+  flex: 1 1 auto;
+  margin-right: 0.5rem;
+}
+
+.navbar-govt .brand-text {
+  display: block;
+  min-width: 0;
+  line-height: 1.15;
+  white-space: normal;
+}
+
+/* Two text variants: full legal name on wide screens, a short label on
+   narrow ones, so the brand never wraps into three lines or collides
+   with the toggler button. */
+.brand-text-short {
+  display: none;
+}
+
+.navbar-govt .nav-link {
+  color: rgba(255, 255, 255, 0.85);
+  font-weight: 500;
+  font-size: 0.92rem;
+  padding: 0.55rem 0.9rem !important;
+  border-radius: 6px;
+  transition:
+    background-color 0.15s ease,
+    color 0.15s ease;
+}
+
+.navbar-govt .nav-link:hover,
+.navbar-govt .nav-link:focus {
+  color: #fff;
+  background-color: rgba(255, 255, 255, 0.12);
+}
+
+.navbar-govt .nav-link.active {
+  color: #fff;
+  background-color: var(--smart-red);
+}
+
+.navbar-govt .nav-link-admin {
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  margin-left: 0.4rem;
+}
+
+.navbar-govt .nav-link-admin:hover {
+  background-color: var(--smart-yellow);
+  border-color: var(--smart-yellow);
+  color: var(--smart-ink);
+}
+
+/* Real SMART icon logo next to the brand name (navbar).
+   Fluid size: scales smoothly with viewport width instead of
+   jumping at a single breakpoint. Min 22px, max 34px. */
+.navbar-brand-logo {
+  display: block;
+  flex: 0 0 auto;
+  width: clamp(22px, 6vw, 34px);
+  height: clamp(22px, 6vw, 34px);
+  max-width: 34px;
+  max-height: 34px;
+  object-fit: contain;
+}
+
+/* Toggler: make it a clear, tappable button against the gradient bg */
+.navbar-govt .navbar-toggler {
+  flex: 0 0 auto;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 6px;
+  padding: 0.3rem 0.5rem;
+}
+
+.navbar-govt .navbar-toggler:focus {
+  box-shadow: 0 0 0 0.2rem rgba(249, 203, 20, 0.35);
+}
+
+.navbar-govt .navbar-toggler-icon {
+  width: 1.3em;
+  height: 1.3em;
+}
+
+/* --------------------------------------------------------------------
+   Navbar — responsive breakpoints
+   -------------------------------------------------------------------- */
+
+/* Below Bootstrap's lg breakpoint the menu collapses into a dropdown
+   panel — style it as a distinct card instead of plain stacked links. */
+@media (max-width: 991.98px) {
+  .navbar-govt .navbar-collapse {
+    margin-top: 0.75rem;
+    padding: 0.6rem;
+    background: rgba(11, 34, 66, 0.55);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 10px;
+    backdrop-filter: blur(2px);
+  }
+
+  .navbar-govt .navbar-nav {
+    gap: 0.25rem;
+  }
+
+  .navbar-govt .nav-link {
+    padding: 0.6rem 0.75rem !important;
+  }
+
+  .navbar-govt .nav-link-admin {
+    margin-left: 0;
+    margin-top: 0.35rem;
+    text-align: center;
+  }
+}
+
+/* Swap to the shorter brand label once the full name starts crowding
+   the toggler button. */
+@media (max-width: 575.98px) {
+  .brand-text-full {
+    display: none;
+  }
+
+  .brand-text-short {
+    display: block;
+  }
+
+  .navbar-govt .navbar-brand {
+    font-size: 0.88rem;
+  }
+}
+
+/* --------------------------------------------------------------------
+   Footer
+   -------------------------------------------------------------------- */
+.footer-govt {
+  position: relative;
+  overflow: hidden;
+  background: var(--smart-surface);
+  border-top: 1px solid var(--smart-border);
+}
+
+.footer-govt .container {
+  position: relative;
+  z-index: 1;
+}
+
+.footer-corner-shape {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 90px;
+  height: 100%;
+  background: var(--smart-blue);
+  clip-path: polygon(0 0, 55% 0, 20% 100%, 0 100%);
+  opacity: 0.9;
+}
+
+.footer-corner-shape::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 55px;
+  height: 100%;
+  background: var(--smart-yellow);
+  clip-path: polygon(0 0, 60% 0, 15% 100%, 0 100%);
+}
+
+.footer-corner-shape::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 28px;
+  height: 100%;
+  background: var(--smart-red);
+  clip-path: polygon(0 0, 70% 0, 10% 100%, 0 100%);
+}
+
+/* Full SMART lockup logo (footer, more room to breathe).
+   Fluid size: scales smoothly with viewport width. */
+.footer-logo-img {
+  height: clamp(36px, 8vw, 54px);
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+.footer-link {
+  color: var(--smart-muted);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.footer-link:hover,
+.footer-link:focus {
+  color: var(--smart-blue);
+}
+
+.footer-link-sep {
+  margin: 0 0.4rem;
+  color: var(--smart-border);
+}
+
+/* --------------------------------------------------------------------
+   Buttons
+   -------------------------------------------------------------------- */
+.btn-govt-primary {
+  display: inline-block;
+  background: var(--smart-red);
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.92rem;
+  border: none;
+  border-radius: 6px;
+  padding: 0.65rem 1.4rem;
+  text-align: center;
+  transition:
+    background-color 0.15s ease,
+    transform 0.15s ease;
+}
+
+.btn-govt-primary:hover,
+.btn-govt-primary:focus {
+  background: var(--smart-red-dark);
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+.btn-govt-outline {
+  display: inline-block;
+  background: transparent;
+  color: var(--smart-blue);
+  font-weight: 600;
+  border: 1.5px solid var(--smart-blue);
+  border-radius: 6px;
+  padding: 0.45rem 1.1rem;
+  text-align: center;
+  transition:
+    background-color 0.15s ease,
+    color 0.15s ease;
+}
+
+.btn-govt-outline:hover,
+.btn-govt-outline:focus {
+  background: var(--smart-blue);
+  color: #fff;
+}
+
+/* --------------------------------------------------------------------
+   Small helpers
+   -------------------------------------------------------------------- */
+.text-muted {
+  color: var(--smart-muted) !important;
+}
+
+@media (max-width: 767.98px) {
+  .page-corner-accent {
+    width: 150px;
+    height: 130px;
+  }
+
+  .page-corner-accent .corner-blue {
+    width: 80px;
+    height: 80px;
+  }
+
+  .page-corner-accent .corner-yellow {
+    width: 130px;
+    height: 40px;
+  }
+
+  .page-corner-accent .corner-red {
+    width: 150px;
+    height: 26px;
+  }
+
+  .page-corner-accent .corner-triangle {
+    top: 80px;
+    width: 80px;
+    height: 80px;
+  }
+
+  .hero-govt {
+    padding: 2rem 1.5rem;
+  }
+
+  .hero-govt::before,
+  .hero-govt::after {
+    width: 140px;
+  }
+
+  .hero-corner-shape {
+    display: none;
+  }
+
+  .hero-govt h1 {
+    font-size: 1.5rem;
+  }
+
+  .corner-accent-blue::after,
+  .corner-accent-red::after,
+  .corner-accent-yellow::after {
+    width: 34px;
+    height: 34px;
+  }
+
+  .footer-corner-shape {
+    width: 55px;
+  }
+}
+
+/* Very narrow phones: nothing extra needed here — the navbar logo and
+   brand text already scale down at the 575.98px breakpoint above. */

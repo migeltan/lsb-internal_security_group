@@ -1,6 +1,9 @@
+
+
 <?php
+require_once __DIR__ . '/../config/connection_paths.php';
 $pageTitle = 'Admin Login';
-require_once __DIR__ . '/../includes/header.php';
+require_once INCLUDES_PATH . '/header.php';
 ?>
 
 <div class="form-section-card" style="max-width:480px; margin:0 auto;">
@@ -11,7 +14,7 @@ require_once __DIR__ . '/../includes/header.php';
         <code>password_verify()</code>) will be wired up here in Phase 3, using the
         <code>users</code> table already defined in the schema.
     </p>
-    <a href="../index.php" class="btn btn-govt-outline btn-sm">Back to Home</a>
+    <a href="<?= BASE_URL ?>/index.php" class="btn btn-govt-outline btn-sm">Back to Home</a>
 </div>
 
-<?php require_once __DIR__ . '/../includes/footer.php'; ?>
+<?php require_once INCLUDES_PATH . '/footer.php'; ?>

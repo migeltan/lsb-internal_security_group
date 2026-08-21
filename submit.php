@@ -1,9 +1,10 @@
 <?php
-require_once __DIR__ . '/config/database.php';
-require_once __DIR__ . '/includes/functions.php';
+require_once __DIR__ . '/config/connection_paths.php';
+require_once CONFIG_PATH . '/database.php';
+require_once INCLUDES_PATH . '/functions.php';
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    header('Location: index.php');
+    header('Location: ' . BASE_URL . '/index.php');
     exit;
 }
 
@@ -56,7 +57,7 @@ if ($formType === 'access_pass') {
     }
 
     if (!empty($errors)) {
-        renderErrors($errors, 'access-pass.php');
+        renderErrors($errors, FEAT1_URL . '/access-pass.php');
         exit;
     }
 
@@ -144,7 +145,7 @@ if ($formType === 'access_pass') {
         }
 
         // File uploads
-        $uploadDir = __DIR__ . '/uploads/' . $refNumber;
+        $uploadDir = UPLOADS_PATH . '/' . $refNumber;
         $documentFields = [
             'doc_letter_request'       => ['label' => 'Letter Request', 'exts' => ALLOWED_DOC_EXTENSIONS, 'mimes' => ALLOWED_DOC_MIME_TYPES, 'required' => true],
             'doc_valid_id_1'           => ['label' => 'Valid ID 1', 'exts' => ALLOWED_DOC_EXTENSIONS, 'mimes' => ALLOWED_DOC_MIME_TYPES, 'required' => true],
@@ -178,13 +179,13 @@ if ($formType === 'access_pass') {
 
         $pdo->commit();
 
-        header('Location: confirmation.php?ref=' . urlencode($refNumber));
+        header('Location: ' . BASE_URL . '/confirmation.php?ref=' . urlencode($refNumber));
         exit;
 
     } catch (Throwable $e) {
         $pdo->rollBack();
         cleanupUploadDir($uploadDir ?? null);
-        renderErrors(['Something went wrong while saving your application: ' . $e->getMessage()], 'access-pass.php');
+        renderErrors(['Something went wrong while saving your application: ' . $e->getMessage()], FEAT1_URL . '/access-pass.php');
         exit;
     }
 }
@@ -222,7 +223,7 @@ if ($formType === 'vehicle_sticker') {
     }
 
     if (!empty($errors)) {
-        renderErrors($errors, 'vehicle-sticker.php');
+        renderErrors($errors, FEAT2_URL . '/vehicle-sticker.php');
         exit;
     }
 
@@ -270,7 +271,7 @@ if ($formType === 'vehicle_sticker') {
         ]);
 
         // File uploads
-        $uploadDir = __DIR__ . '/uploads/' . $refNumber;
+        $uploadDir = UPLOADS_PATH . '/' . $refNumber;
         $documentFields = [
             'doc_or_cr'                => ['label' => 'OR/CR', 'required' => true],
             'doc_deed_of_sale'         => ['label' => 'Deed of Sale', 'required' => false],
@@ -292,13 +293,13 @@ if ($formType === 'vehicle_sticker') {
 
         $pdo->commit();
 
-        header('Location: confirmation.php?ref=' . urlencode($refNumber));
+        header('Location: ' . BASE_URL . '/confirmation.php?ref=' . urlencode($refNumber));
         exit;
 
     } catch (Throwable $e) {
         $pdo->rollBack();
         cleanupUploadDir($uploadDir ?? null);
-        renderErrors(['Something went wrong while saving your application: ' . $e->getMessage()], 'vehicle-sticker.php');
+        renderErrors(['Something went wrong while saving your application: ' . $e->getMessage()], FEAT2_URL . '/vehicle-sticker.php');
         exit;
     }
 }
@@ -309,7 +310,7 @@ if ($formType === 'vehicle_sticker') {
 function renderErrors(array $errors, string $backTo): void
 {
     $pageTitle = 'Submission Error';
-    require_once __DIR__ . '/includes/header.php';
+    require_once INCLUDES_PATH . '/header.php';
     ?>
     <div class="form-section-card" style="max-width:640px; margin:0 auto;">
         <div class="section-label" style="color:#A13D2E;">Could Not Submit</div>
@@ -326,7 +327,7 @@ function renderErrors(array $errors, string $backTo): void
         <a href="<?= htmlspecialchars($backTo) ?>" class="btn btn-govt-outline btn-sm">Return to Form</a>
     </div>
     <?php
-    require_once __DIR__ . '/includes/footer.php';
+    require_once INCLUDES_PATH . '/footer.php';
 }
 
 // ============================================================

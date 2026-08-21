@@ -3,9 +3,13 @@
  * Database connection config.
  * Default values match a fresh XAMPP install (root user, no password).
  * If you set a MySQL root password, update DB_PASS below.
+ *
+ * NOTE: This XAMPP instance's MySQL runs on port 3307 (not the default 3306)
+ * to avoid conflicting with another MySQL install on this machine.
  */
 
 define('DB_HOST', 'localhost');
+define('DB_PORT', '3308');
 define('DB_NAME', 'smart_portal');
 define('DB_USER', 'root');
 define('DB_PASS', '');
@@ -15,7 +19,7 @@ function getDbConnection(): PDO
     static $pdo = null;
 
     if ($pdo === null) {
-        $dsn = 'mysql:host=' . DB_HOST . ';dbname=' . DB_NAME . ';charset=utf8mb4';
+        $dsn = 'mysql:host=' . DB_HOST . ';port=' . DB_PORT . ';dbname=' . DB_NAME . ';charset=utf8mb4';
         $options = [
             PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
             PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
